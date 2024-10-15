@@ -3,7 +3,7 @@ volumes:
 
 services:
  rocketchat:
-   image: registry.rocket.chat/rocketchat/rocket.chat:${RELEASE:-latest}
+   image: registry.rocket.chat/rocketchat/rocket.chat:4.8.1
    restart: on-failure
    volumes:
       - ./data/uploads:/app/uploads
@@ -16,16 +16,16 @@ services:
    environment:
      MONGO_URL: "mongodb://mongodb:27017/rocketchat?replicaSet=rs0"
      MONGO_OPLOG_URL: "mongodb://mongodb:27017/local?replicaSet=rs0"
-     ROOT_URL: ${ROOT_URL:-http://localhost:${HOST_PORT:-3000}}
-     PORT: ${PORT:-3000}
+     ROOT_URL: "http://localhost:3006"
+     PORT: "3006"
      DEPLOY_METHOD: docker
      DEPLOY_PLATFORM: ${DEPLOY_PLATFORM}
    depends_on:
      - mongodb
    expose:
-     - ${PORT:-3000}
+     - "3006"
    ports:
-     - "${BIND_IP:-0.0.0.0}:${HOST_PORT:-3000}:${PORT:-3000}"
+     - "0.0.0.0:3006:3006"
 
 
  mongodb:
