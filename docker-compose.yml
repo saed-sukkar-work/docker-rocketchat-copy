@@ -3,7 +3,7 @@ volumes:
 
 services:
  rocketchat:
-   image: registry.rocket.chat/rocketchat/rocket.chat:4.8.1
+   image: registry.rocket.chat/rocketchat/rocket.chat:5.4.5
    restart: on-failure
    volumes:
       - ./data/uploads:/app/uploads
