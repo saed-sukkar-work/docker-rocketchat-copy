@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rocketchat-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "https"
+    traefik.ingress.kubernetes.io/router.tls: "false" # Set to false for localhost
+spec:
+  rules:
+    - host: "rocketchat.local"
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: rocketchat
+              port:
+                number: 3000
